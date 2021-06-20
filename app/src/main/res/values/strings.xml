@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">hm_view_model</string>
+    <string name="temperature_label">Температура</string>
+    <string name="feels_like_label">Ощущается как</string>
+    <string name="city_coordinates">lt/ln: %s, %s"</string>
+    <string name="mainfragment_str">MainFragment</string>
+    <dimen name="city_name_margin_top">50dp</dimen>
+    <dimen name="margin_15_dp">15dp</dimen>
+    <dimen name="temperature_value_text_size">40sp</dimen>
+    <dimen name="feels_like_text_size">30sp</dimen>
 </resources>
