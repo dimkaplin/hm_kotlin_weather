@@ -1,7 +1,32 @@
 package com.example.hm_view_model.ui.main
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.hm_view_model.model.ApplState
+import com.example.hm_view_model.model.repository.Repository
+import com.example.hm_view_model.model.repository.RepositoryImpl
 
 class MainViewModel : ViewModel() {
-    // TODO: Implement the ViewModel
+    private val liveData : MutableLiveData<ApplState> = MutableLiveData()
+    private val repositoryImpl: Repository = RepositoryImpl()
+
+    /*fun getData() :LiveData<Any> {
+        setDataFromSource();
+        return liveData;
+    }*/
+
+    fun getData() = liveData
+
+    fun getWeather() = setDataFromSource()
+
+    private fun setDataFromSource() {
+        liveData.value = ApplState.Middle
+        Thread{
+            Thread.sleep(1000)
+            //liveData.postValue(Any())
+            //liveData.postValue(ApplState.Good(Weather()))
+            liveData.postValue(ApplState.Good(repositoryImpl.getLocalWeather()))
+            //liveData.value = Any()
+        }.start()
+    }
 }
