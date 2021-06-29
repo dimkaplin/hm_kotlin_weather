@@ -4,6 +4,8 @@
     <string name="feels_like_label">Ощущается как</string>
     <string name="city_coordinates">lt/ln: %s, %s"</string>
     <string name="mainfragment_str">MainFragment</string>
+    <string name="reload">reload</string>
+    <string name="error">error</string>
     <dimen name="city_name_margin_top">50dp</dimen>
     <dimen name="margin_15_dp">15dp</dimen>
     <dimen name="temperature_value_text_size">40sp</dimen>

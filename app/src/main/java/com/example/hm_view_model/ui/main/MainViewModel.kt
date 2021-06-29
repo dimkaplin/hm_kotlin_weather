@@ -17,7 +17,7 @@ class MainViewModel : ViewModel() {
 
     fun getData() = liveData
 
-    fun getWeather() = setDataFromSource()
+    /*fun getWeather() = setDataFromSource()
 
     private fun setDataFromSource() {
         liveData.value = ApplState.Middle
@@ -27,6 +27,21 @@ class MainViewModel : ViewModel() {
             //liveData.postValue(ApplState.Good(Weather()))
             liveData.postValue(ApplState.Good(repositoryImpl.getLocalWeather()))
             //liveData.value = Any()
+        }.start()
+    }*/
+
+    fun getWeatherFromLocalRusSource() = getDataFromSource(true)
+
+    fun getWeatherFromAnotherSource() = getDataFromSource(false)
+
+    fun getRemoteSourceWeather() = getDataFromSource(true)
+
+    private fun getDataFromSource(isLocal: Boolean) {
+        liveData.value = ApplState.Middle
+        Thread{
+            Thread.sleep(1000)
+            liveData.postValue(ApplState.Good(if (isLocal) repositoryImpl.getLocalRusWeather()
+            else repositoryImpl.getLocalAnotherWeather()))
         }.start()
     }
 }
