@@ -17,9 +17,16 @@ import com.google.android.material.snackbar.Snackbar
 class MainFragment : Fragment() {
 
     private lateinit var binding: MainFragmentBinding
+    
 
     companion object {
-        fun newInstance() = MainFragment()
+        const val BUNDLE_EXTRA = "weather"
+        //fun newInstance() = MainFragment()
+        fun newInstance(bundle: Bundle): MainFragment {
+            val frag = MainFragment()
+            frag.arguments = bundle
+            return frag
+        }
     }
 
     private lateinit var viewModel: MainViewModel
@@ -35,13 +42,26 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View,  savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         //val observe = Observer<Any> {renderData(it)}
-        val observe = Observer<ApplState> {renderData(it)}
         //viewModel.getData().observe(viewLifecycleOwner, observe)
+        //viewModel.getWeather()
+        /*viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+        val observe = Observer<ApplState> {renderData(it)}
         viewModel.getData().observe(viewLifecycleOwner, observe)
+        viewModel.getWeatherFromLocalRusSource()*/
+        val weather = arguments?.getParcelable<Weather>(BUNDLE_EXTRA)
+        if (weather != null) {
+            val city = weather.city
+            binding.cityName.text = city.city
+            binding.cityCoordinates.text = String.format(
+                getString(R.string.city_coordinates),
+                city.lat.toString(),
+                city.lon.toString()
+            )
+            binding.temperatureValue.text = weather.temperature.toString()
+            binding.feelsLikeValue.text = weather.feelsLike.toString()
+        }
 
-        viewModel.getWeather()
     }
 
     //private fun renderData(data: Any) {
@@ -53,17 +73,17 @@ class MainFragment : Fragment() {
                 //mainView ?????
                 Snackbar.make(main, "Good", Snackbar.LENGTH_LONG).show()
                 val weather = data.weatherData
-                setData(weather)
+               // setData(weather) //????
             }
             is ApplState.Bad -> {
-                loadLayout.visibility = View.GONE
-            }
+                loadLayout.visibility = View.GONE }
             is ApplState.Middle -> {
                 loadLayout.visibility = View.VISIBLE
                 Snackbar
                     //mainView ?????
                     .make(main, "Bad", Snackbar.LENGTH_INDEFINITE)
-                    .setAction("Reload") {viewModel.getWeather()}
+                    //.setAction("Reload") {viewModel.getWeather(f)}
+                    .setAction("Reload") {viewModel.getWeatherFromLocalRusSource()}
                     .show()
             }
         }
