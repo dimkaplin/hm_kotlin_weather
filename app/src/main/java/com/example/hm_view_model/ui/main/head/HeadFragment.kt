@@ -70,7 +70,7 @@ class HeadFragment  : Fragment() {
             binding.mainFragmentFAB.setImageResource(R.drawable.ic_launcher_background)
         } else {
             viewModel.getWeatherFromLocalRusSource()//getWeatherFromLocalSourceRus()
-            binding.mainFragmentFAB.setImageResource(R.drawable.ic_russia)
+            binding.mainFragmentFAB.setImageResource(R.drawable.ic_launcher_foreground)
         }
         isDataSetRus = !isDataSetRus
     }

@@ -39,9 +39,10 @@ class MainFragAdapter(private var onItemViewClickListener: HeadFragment.OnItemVi
             holder.bind(weatherData[position])
         }
 
-        override fun getItemCount(): Int {
+        /*override fun getItemCount(): Int {
             return weatherData.size
-        }
+        }*/
+        override fun getItemCount()= weatherData.size
 
         inner class MainViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
