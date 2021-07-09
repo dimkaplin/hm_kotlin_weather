@@ -1,5 +1,6 @@
 package com.example.hm_view_model.ui.main
 
+import android.content.Intent
 import android.os.Build
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -17,6 +18,9 @@ import com.example.hm_view_model.databinding.MainFragmentBinding
 import com.example.hm_view_model.model.ApplState
 import com.example.hm_view_model.model.Weather
 import com.example.hm_view_model.model.WeatherDTO
+import com.example.hm_view_model.services.MAIN_SERVICE_STRING_EXTRA
+import com.example.hm_view_model.services.MainService
+//import com.example.hm_view_model.services.TAG
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
 import java.io.BufferedReader
@@ -139,10 +143,42 @@ class MainFragment : Fragment() {
         weatherBundle = arguments?.getParcelable(BUNDLE_EXTRA) ?: Weather()
       //  binding.main.visibility = View.GONE
       //  binding.loadLayout.visibility = View.VISIBLE
-        loadWeather()
+        //loadWeather()
 
-
+        Log.d("111", "111")
+        initServiceButton()
+        //initServiceWithBroadcastButton()
     }
+
+    //эксперимент с broadcastReciever
+
+    /*private fun initServiceWithBroadcastButton() {
+        binding.serviceWithBroadcastButton.setOnClickListener {
+            context?.let {
+                it.startService(Intent(it, MainService::class.java).apply {
+                    putExtra(
+                        MAIN_SERVICE_INT_EXTRA,
+                        binding.editText.text.toString().toInt()
+                    )
+                })
+            }
+        }
+    }*/
+
+
+    private fun initServiceButton() {
+        binding.btnStartService.setOnClickListener {
+            context?.let {
+                it.startService(Intent(it, MainService::class.java).apply {
+                    putExtra(
+                        MAIN_SERVICE_STRING_EXTRA,
+                        getString(R.string.app_name)
+                    )
+                })
+            }
+        }
+    }
+
 
     //private fun renderData(data: Any) {
     private fun renderData(data: ApplState) = with(binding) {
