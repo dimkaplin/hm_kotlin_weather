@@ -23,6 +23,7 @@ import com.example.hm_view_model.services.MainService
 //import com.example.hm_view_model.services.TAG
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
+import com.squareup.picasso.Picasso
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.net.MalformedURLException
@@ -45,6 +46,8 @@ class MainFragment : Fragment() {
             frag.arguments = bundle
             return frag
         }
+
+
     }
 
     private fun displayWeather(weatherDTO: WeatherDTO) {
@@ -65,7 +68,7 @@ class MainFragment : Fragment() {
     }
 
     @RequiresApi(Build.VERSION_CODES.N)
-    private fun loadWeather() {
+    public fun loadWeather() {
         try {
             val uri =
                 URL("https://api.weather.yandex.ru/v2/informers?lat=${weatherBundle.city.lat}&lon=${weatherBundle.city.lon}")
@@ -144,6 +147,10 @@ class MainFragment : Fragment() {
       //  binding.main.visibility = View.GONE
       //  binding.loadLayout.visibility = View.VISIBLE
         //loadWeather()
+        Picasso
+            .get()
+            .load("https://res.cloudinary.com/demo/video/upload/dog.png")
+            ;//.into(куда грузить)
 
         Log.d("111", "111")
         initServiceButton()
