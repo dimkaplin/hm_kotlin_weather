@@ -1,5 +1,6 @@
 package com.example.hm_view_model.ui.main.head
 
+import android.content.Context
 import android.os.Bundle
 import android.provider.Settings.Global.getString
 import android.view.LayoutInflater
@@ -65,13 +66,18 @@ class HeadFragment  : Fragment() {
     }
 
     private fun changeWeatherDataSet() {
-        if (isDataSetRus) {
+        val isDataSetRusNew = activity
+            ?.getPreferences(Context.MODE_PRIVATE)
+            ?.getBoolean(key_activity, true) ?: true
+        if (isDataSetRusNew) {
             viewModel.getWeatherFromAnotherSource()//getWeatherFromLocalSourceWorld()
             binding.mainFragmentFAB.setImageResource(R.drawable.ic_launcher_background)
         } else {
             viewModel.getWeatherFromLocalRusSource()//getWeatherFromLocalSourceRus()
             binding.mainFragmentFAB.setImageResource(R.drawable.ic_launcher_foreground)
         }
+        val editor = activity?.getPreferences(Context.MODE_PRIVATE)?.edit()
+        editor?.putBoolean(key_activity)
         isDataSetRus = !isDataSetRus
     }
 
@@ -100,6 +106,7 @@ class HeadFragment  : Fragment() {
     }
 
     companion object {
+        private const val key_activity = "key_activity"
         fun newInstance() = HeadFragment()//MainFragment()
     }
 }
