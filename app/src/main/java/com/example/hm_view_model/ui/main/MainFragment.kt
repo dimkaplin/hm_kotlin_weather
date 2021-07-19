@@ -16,6 +16,7 @@ import androidx.lifecycle.Observer
 import com.example.hm_view_model.R
 import com.example.hm_view_model.databinding.MainFragmentBinding
 import com.example.hm_view_model.model.ApplState
+import com.example.hm_view_model.model.City
 import com.example.hm_view_model.model.Weather
 import com.example.hm_view_model.model.WeatherDTO
 import com.example.hm_view_model.services.MAIN_SERVICE_STRING_EXTRA
@@ -49,6 +50,21 @@ class MainFragment : Fragment() {
 
 
     }
+
+    /*private fun saveCity(
+        city: City,
+        weather: Weather
+    ) {
+        viewModel.saveCityToDB(
+            Weather(
+                city,
+                weather.temperature,
+                weather.feelsLike,
+                weather.condition
+            )
+        )
+    }*/
+
 
     private fun displayWeather(weatherDTO: WeatherDTO) {
         with(binding) {

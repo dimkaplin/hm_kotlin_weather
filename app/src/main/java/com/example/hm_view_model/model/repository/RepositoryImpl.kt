@@ -1,5 +1,6 @@
 package com.example.hm_view_model.model.repository
 
+import androidx.room.Database
 import com.example.hm_view_model.WeatherLoader
 import com.example.hm_view_model.model.Weather
 import com.example.hm_view_model.model.getRussianCities
@@ -24,6 +25,8 @@ class RepositoryImpl: Repository {
 
         )
     }
+
+
 
 
     /*override fun getLocalRusWeather(): List<Weather> {

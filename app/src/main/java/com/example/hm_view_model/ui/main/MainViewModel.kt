@@ -3,6 +3,10 @@ package com.example.hm_view_model.ui.main
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.hm_view_model.model.ApplState
+import com.example.hm_view_model.model.Weather
+//import com.example.hm_view_model.model.app.App.Companion.getHistoryDao
+import com.example.hm_view_model.model.app.LocalRepository
+import com.example.hm_view_model.model.app.LocalRepositoryImpl
 import com.example.hm_view_model.model.repository.Repository
 import com.example.hm_view_model.model.repository.RepositoryImpl
 import kotlinx.android.extensions.*
@@ -13,11 +17,17 @@ import org.jetbrains.anko.custom.async
 class MainViewModel : ViewModel() {
     private val liveData : MutableLiveData<ApplState> = MutableLiveData()
     private val repositoryImpl: Repository = RepositoryImpl()
+    //private val historyRepository: LocalRepository = LocalRepositoryImpl(getHistoryDao())
 
     /*fun getData() :LiveData<Any> {
         setDataFromSource();
         return liveData;
     }*/
+
+    /*fun saveCityToDB(weather: Weather) {
+        historyRepository.saveEntity(weather)
+    }*/
+
 
     fun getData() = liveData
 
