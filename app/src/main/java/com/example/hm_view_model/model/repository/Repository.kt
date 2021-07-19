@@ -1,5 +1,6 @@
 package com.example.hm_view_model.model.repository
 
+import androidx.room.Database
 import com.example.hm_view_model.model.Weather
 
 interface Repository {
@@ -7,4 +8,5 @@ interface Repository {
     fun getWeatherFromServerLesson(x: Double, y:Double): Weather
     fun getLocalRusWeather(): List<Weather>
     fun getLocalAnotherWeather(): List<Weather>
+
 }

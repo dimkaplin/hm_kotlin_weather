@@ -63,10 +63,12 @@ class HeadFragment  : Fragment() {
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         viewModel.getData().observe(viewLifecycleOwner, Observer { renderData(it) })
         viewModel.getWeatherFromLocalRusSource()//getWeatherFromLocalSourceRus()
+
+
     }
 
     private fun changeWeatherDataSet() {
-        val isDataSetRusNew = activity
+        var isDataSetRusNew = activity
             ?.getPreferences(Context.MODE_PRIVATE)
             ?.getBoolean(key_activity, true) ?: true
         if (isDataSetRusNew) {
@@ -77,7 +79,8 @@ class HeadFragment  : Fragment() {
             binding.mainFragmentFAB.setImageResource(R.drawable.ic_launcher_foreground)
         }
         val editor = activity?.getPreferences(Context.MODE_PRIVATE)?.edit()
-        editor?.putBoolean(key_activity)
+        editor?.putBoolean(key_activity, !isDataSetRusNew)
+        editor?.apply()
         isDataSetRus = !isDataSetRus
     }
 
