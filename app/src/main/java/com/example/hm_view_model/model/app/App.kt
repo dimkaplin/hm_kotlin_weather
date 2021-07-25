@@ -5,7 +5,7 @@ import androidx.room.Room
 import com.example.hm_view_model.model.database.HistoryDataBase
 import com.example.hm_view_model.model.database.HitoryDAO
 
-/*class App : Application() {
+class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
@@ -36,4 +36,4 @@ import com.example.hm_view_model.model.database.HitoryDAO
             return db!!.historyDao()
         }
     }
-}*/
+}
