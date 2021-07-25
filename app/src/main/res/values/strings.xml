@@ -9,6 +9,7 @@
     <string name="lblStartService">Start Service</string>
     <string name="content_provider">content</string>
     <string name="menu_title_history">history</string>
+    <string name="authorities">authorities</string>
     <dimen name="city_name_margin_top">50dp</dimen>
     <dimen name="margin_15_dp">15dp</dimen>
     <dimen name="temperature_value_text_size">40sp</dimen>
