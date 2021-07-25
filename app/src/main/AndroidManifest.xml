@@ -4,6 +4,7 @@
     package="com.example.hm_view_model">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
 
     <application
 
